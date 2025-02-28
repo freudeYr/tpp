@@ -10,6 +10,17 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# VSCode files
+.vscode/
+
+# PostgreSQL database files (ignore local DB dumps)
+*.sql
+*.dump
+
 # Eclipse m2e generated files
 # Eclipse Core
 .project
