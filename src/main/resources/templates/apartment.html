@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Apartments</title>
+</head>
+<body>
+
+    <h2>Квартири</h2>
+    <table border="1">
+        <tr><th>ID</th><th>Будинок (ID)</th><th>Номер квартири</th><th>Дії</th></tr>
+        <tr th:each="apartment : ${apartments}">
+            <td th:text="${apartment.apartmentId}"></td>
+            <td th:text="${apartment.houseId}"></td>
+            <td th:text="${apartment.apartmentNumber}"></td>
+            <td>
+                <form th:action="@{/apartment/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${apartment.apartmentId}" />
+                    <button type="submit">Видалити</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Додати нову квартиру</h3>
+    <form th:action="@{/apartment/add}" method="post">
+        <input type="number" name="apartmentNumber" placeholder="Номер квартири" required />
+        <input type="number" name="houseId" placeholder="ID будинку" required />
+        <button type="submit">Додати</button>
+    </form>
+
+    <h3>Редагувати квартиру</h3>
+    <form th:action="@{/apartment/update}" method="post">
+        <input type="number" name="id" placeholder="ID квартири" required />
+        <input type="number" name="apartmentNumber" placeholder="Новий номер квартири" required />
+        <button type="submit">Оновити</button>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cities</title>
+</head>
+<body>
+    <h2>Міста</h2>
+    <table border="1">
+        <tr><th>ID</th><th>Назва</th><th>Дії</th></tr>
+        <tr th:each="city : ${cities}">
+            <td th:text="${city.cityId}"></td>  
+            <td th:text="${city.cityName}"></td>
+            <td>
+                <!-- Форма для видалення -->
+                <form th:action="@{/city/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${city.cityId}" />
+                    <button type="submit">Видалити</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Додати нове місто</h3>
+    <form th:action="@{/city/add}" method="post">
+        <input type="text" name="name" placeholder="Назва міста" required />
+        <button type="submit">Додати</button>
+    </form>
+
+    <h3>Редагувати місто</h3>
+    <form th:action="@{/city/update}" method="post">
+        <input type="number" name="id" placeholder="ID" required />
+        <input type="text" name="name" placeholder="Нова назва" required />
+        <button type="submit">Оновити</button>
+    </form>
+</body>
+</html>

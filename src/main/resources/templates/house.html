@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Houses</title>
+</head>
+<body>
+
+    <h2>Будинки</h2>
+    <table border="1">
+        <tr><th>ID</th><th>Вулиця (ID)</th><th>Номер будинку</th><th>Дії</th></tr>
+        <tr th:each="house : ${houses}">
+            <td th:text="${house.houseId}"></td>
+            <td th:text="${house.streetId}"></td>
+            <td th:text="${house.houseNumber}"></td>
+            <td>
+                <form th:action="@{/house/delete}" method="post">
+                    <input type="hidden" name="id" th:value="${house.houseId}" />
+                    <button type="submit">Видалити</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Додати новий будинок</h3>
+    <form th:action="@{/house/add}" method="post">
+        <input type="text" name="houseNumber" placeholder="Номер будинку" required />
+        <input type="number" name="streetId" placeholder="ID вулиці" required />
+        <button type="submit">Додати</button>
+    </form>
+
+    <h3>Редагувати будинок</h3>
+    <form th:action="@{/house/update}" method="post">
+        <input type="number" name="id" placeholder="ID будинку" required />
+        <input type="text" name="houseNumber" placeholder="Новий номер будинку" required />
+        <button type="submit">Оновити</button>
+    </form>
+
+</body>
+</html>
